@@ -271,29 +271,7 @@ import canvtxt from "canvas-txt";
             const container = document.querySelector('.container');
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
- function drawWrappedText(text, x, y, maxWidth, lineHeight) {
-            var words = text.split(' ');
-            var line = '';
-            var lines = [];
 
-            for (var i = 0; i < words.length; i++) {
-                var testLine = line + words[i] + ' ';
-                var metrics = ctx.measureText(testLine);
-                var testWidth = metrics.width;
-                if (testWidth > maxWidth && i > 0) {
-                    lines.push(line);
-                    line = words[i] + ' ';
-                } else {
-                    line = testLine;
-                }
-            }
-            lines.push(line);
-
-            for (var j = 0; j < lines.length; j++) {
-                ctx.fillText(lines[j], x, y);
-                y += lineHeight;
-            }
-        }
             // Définir les dimensions du canvas en fonction de la taille du conteneur
             canvas.width = 1080;
             canvas.height = 1920;
