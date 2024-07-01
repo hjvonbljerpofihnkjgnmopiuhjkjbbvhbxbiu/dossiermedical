@@ -25,7 +25,6 @@
     </style>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/canvas-txt@4.0.3/dist/canvas-txt.umd.js"></script>
     <div class="container">
          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="90px" height="269px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="90px" height="269px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -123,7 +122,7 @@
 <g><path style="opacity:0.039" fill="#6b6b6b" d="M 79.5,150.5 C 80.1524,151.449 80.4857,152.615 80.5,154C 80.6932,156.008 80.0265,157.508 78.5,158.5C 79.2653,155.904 79.5987,153.237 79.5,150.5 Z"></path></g>
 </svg>
         </div>
-	
+
 			        <div id="svg4" class="svg-element">
            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="90px" height="269px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g><path style="opacity:0.749" fill="#8c8c8c" d="M 14.5,54.5 C 14.1667,55.5 13.5,56.1667 12.5,56.5C 12.5,55.1667 13.1667,54.5 14.5,54.5 Z"></path></g>
@@ -131,7 +130,7 @@
 <g><path style="opacity:0.749" fill="#f39696" d="M 15.5,54.5 C 15.56,53.9569 15.8933,53.6236 16.5,53.5C 17.8174,59.9883 17.8174,66.3217 16.5,72.5C 16.8229,66.31 16.4896,60.31 15.5,54.5 Z"></path></g>
 </svg>
         </div>
-       
+
 	 		        <div id="svg5" class="svg-element">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="90px" height="269px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g><path style="opacity:1" fill="#787676" d="M 56.5,48.5 C 54.2843,47.7974 52.451,46.4641 51,44.5C 47.7746,52.6638 46.9413,52.3305 48.5,43.5C 44.8227,45.0391 41.3227,44.7058 38,42.5C 37.9326,44.7352 38.4326,46.9019 39.5,49C 38.6683,49.6877 38.0016,49.521 37.5,48.5C 36.9017,47.2054 36.4017,45.8721 36,44.5C 32.4683,48.2059 28.3016,50.8726 23.5,52.5C 27.6897,49.6979 31.3564,46.1979 34.5,42C 40.1683,41.8658 45.835,42.1991 51.5,43C 53.3734,44.7038 55.0401,46.5372 56.5,48.5 Z"></path></g>
@@ -186,7 +185,7 @@
 	<label for="text2">Age:   </label>
             <input type="text" placeholder="00" id="text2" name="text2">
 	</div>
-	
+
     <div class="texte3">            
 	<label for="text3">Sexe:   </label>
             <input placeholder="Homme/Femme" type="text" id="text3" name="text3">
@@ -202,24 +201,24 @@
 	</div>
     <div class="texte6">            
 	<label for="text6">Rapport:   </label>
-            <input placeholder="Décrivez la situation, les soins fait, ..." id="text6" type="text" name="text6" class="expandable-textarea"></input><br>
+            <textarea placeholder="Décrivez la situation, les soins fait, ..." id="text6" name="text6" class="expandable-textarea" rows="1" oninput="autoExpand(this)"></textarea><br>
 	</div>
-	
-	
-    <button onclick="exportToPNG()">Exporter en PNG</button>
-    <script>
-	
-import canvtxt from "canvas-txt";
 
-	
+
+    <button onclick="exportToPNG()">Exporter en PNG</button>
+
+    <script>
+
+
+
        const textnp = document.getElementById('text1')
         var texta = document.getElementById('text2')
         var texts = document.getElementById('text3')
         var textnd = document.getElementById('text4')
         var textd = document.getElementById('text5')
-        
-		 		  var textInput = document.getElementById('text6')
-		 
+         var textr = document.getElementById('text6')
+
+
         const pngUrls = {
             checkbox1: 'https://i.postimg.cc/NMfmGHKh/bodydamage-jambe-droit.png',
             checkbox2: 'https://i.postimg.cc/6pDNNkpn/bodydamage-jambe-gauche.png',
@@ -230,7 +229,7 @@ import canvtxt from "canvas-txt";
         };
 
         const backgroundUrl = 'https://i.postimg.cc/j5Qrg28q/final.png'; // Chemin de l'image de fond
-    
+
 
         document.getElementById('checkbox1').addEventListener('change', function() {
             toggleSVG('svg1', this.checked);
@@ -247,7 +246,7 @@ import canvtxt from "canvas-txt";
         document.getElementById('checkbox4').addEventListener('change', function() {
             toggleSVG('svg4', this.checked);
         });
-		
+
         document.getElementById('checkbox5').addEventListener('change', function() {
             toggleSVG('svg5', this.checked);
         });
@@ -256,19 +255,14 @@ import canvtxt from "canvas-txt";
             toggleSVG('svg6', this.checked);
         });
 
-	const maxWidth = 300; // Largeur maximale avant de sauter à la ligne
-        const lineHeight = 30; // Hauteur de ligne
 
-        
 
-		
         function toggleSVG(svgId, isChecked) {
             const svgElement = document.getElementById(svgId);
             svgElement.style.display = isChecked ? 'block' : 'none';
         }
 
-        async function exportToPNG() {
-
+        async function exportToPNG(valeurChoisie) {
             const container = document.querySelector('.container');
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
@@ -289,15 +283,7 @@ import canvtxt from "canvas-txt";
 			   ctx.fillText(texta.value + ' ans', 100, 487);
 			    ctx.fillText(texts.value, 114, 544);
 				ctx.fillText(textnd.value, 238, 604);
-				ctx.fillText(textd.value, 300, 655);
-		drawText(ctx, (textInput.value, {
-  x: 25,
-  y: 900,
-  width: 1016,
-  height: 907,
-  fontSize: 30,
-}))
-
+				ctx.fillText(textd.value, 300, 670);
                     resolve();
                 };
             });
@@ -318,27 +304,21 @@ import canvtxt from "canvas-txt";
                 }
 
             }
-			
-			
+
+
 
             // Exporter le canvas en PNG
             const pngUrl = canvas.toDataURL('image/png');
             const link = document.createElement('a');
             link.href = pngUrl;
             link.download = 'exported_image.png';
-            link.click();  
-			console.log(`${textInput.value}`)
+            link.click();
         }
 
         function autoExpand(textarea) {
             textarea.style.height = 'auto';
             textarea.style.height = (textarea.scrollHeight) + 'px';
         }
-		
- 
-
-            
     </script>
 
 </body></html>
-
