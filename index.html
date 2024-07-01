@@ -201,14 +201,14 @@
 	</div>
     <div class="texte6">            
 	<label for="text6">Rapport:   </label>
-            <textarea placeholder="Décrivez la situation, les soins fait, ..." id="text6" name="text6" class="expandable-textarea" rows="1" oninput="autoExpand(this)"></textarea><br>
+            <input placeholder="Décrivez la situation, les soins fait, ..." id="text6" type="text" name="text6" class="expandable-textarea"></input><br>
 	</div>
 	
 	
     <button onclick="exportToPNG()">Exporter en PNG</button>
-
     <script>
-
+	
+import canvtxt from "canvas-txt";
 
 	
        const textnp = document.getElementById('text1')
@@ -216,8 +216,8 @@
         var texts = document.getElementById('text3')
         var textnd = document.getElementById('text4')
         var textd = document.getElementById('text5')
-         var textr = document.getElementById('text6')
-		 
+        
+		 		  var textInput = document.getElementById('text6')
 		 
         const pngUrls = {
             checkbox1: 'https://i.postimg.cc/NMfmGHKh/bodydamage-jambe-droit.png',
@@ -255,6 +255,10 @@
             toggleSVG('svg6', this.checked);
         });
 
+	const maxWidth = 300; // Largeur maximale avant de sauter à la ligne
+        const lineHeight = 30; // Hauteur de ligne
+
+        
 
 		
         function toggleSVG(svgId, isChecked) {
@@ -262,11 +266,34 @@
             svgElement.style.display = isChecked ? 'block' : 'none';
         }
 
-        async function exportToPNG(valeurChoisie) {
+        async function exportToPNG() {
+
             const container = document.querySelector('.container');
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
+ function drawWrappedText(text, x, y, maxWidth, lineHeight) {
+            var words = text.split(' ');
+            var line = '';
+            var lines = [];
 
+            for (var i = 0; i < words.length; i++) {
+                var testLine = line + words[i] + ' ';
+                var metrics = ctx.measureText(testLine);
+                var testWidth = metrics.width;
+                if (testWidth > maxWidth && i > 0) {
+                    lines.push(line);
+                    line = words[i] + ' ';
+                } else {
+                    line = testLine;
+                }
+            }
+            lines.push(line);
+
+            for (var j = 0; j < lines.length; j++) {
+                ctx.fillText(lines[j], x, y);
+                y += lineHeight;
+            }
+        }
             // Définir les dimensions du canvas en fonction de la taille du conteneur
             canvas.width = 1080;
             canvas.height = 1920;
@@ -283,7 +310,15 @@
 			   ctx.fillText(texta.value + ' ans', 100, 487);
 			    ctx.fillText(texts.value, 114, 544);
 				ctx.fillText(textnd.value, 238, 604);
-				ctx.fillText(textd.value, 300, 670);
+				ctx.fillText(textd.value, 300, 655);
+		drawText(ctx, (textInput.value, {
+  x: 25,
+  y: 900,
+  width: 1016,
+  height: 907,
+  fontSize: 30,
+}))
+
                     resolve();
                 };
             });
@@ -312,13 +347,19 @@
             const link = document.createElement('a');
             link.href = pngUrl;
             link.download = 'exported_image.png';
-            link.click();
+            link.click();  
+			console.log(`${textInput.value}`)
         }
 
         function autoExpand(textarea) {
             textarea.style.height = 'auto';
             textarea.style.height = (textarea.scrollHeight) + 'px';
         }
+		
+ 
+
+            
     </script>
 
 </body></html>
+
