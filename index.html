@@ -209,7 +209,34 @@
     <button onclick="exportToPNG()">Exporter en PNG</button>
 
     <script>
-const txtcanva = window.canvasTxt
+function fillText(ctx, text, x, y, maxWidth, spacing = 0){
+  const lines = text.split('\n')
+  let lineHeight = 0
+  for (const line of lines) {
+    if (!line) {
+      y += lineHeight
+      continue
+    }
+    let s = ''
+    for (const char of line) {
+      const { width, height } = measureText(ctx, s + char)
+      if (width <= maxWidth) {
+        s += char
+      } else {
+        ctx.fillText(s, x, y)
+        lineHeight = height + spacing
+        y += lineHeight + spacing
+        s = char
+      }
+    }
+    if (s) {
+      const { height } = measureText(ctx, s)
+      ctx.fillText(s, x, y)
+      lineHeight = height + spacing
+      y += lineHeight
+    }
+  }
+}
 
 
        const textnp = document.getElementById('text1')
@@ -285,13 +312,7 @@ const txtcanva = window.canvasTxt
 			    ctx.fillText(texts.value, 114, 544);
 				ctx.fillText(textnd.value, 238, 604);
 				ctx.fillText(textd.value, 300, 670);
- txtcanva.drawText(ctx, (textr.value, {
-  x: 25,
-  y: 900,
-  width: 1016,
-  height: 907,
-  fontSize: 30,
-})),
+                               ctx.fillText(textr.value, 25, 900, 1016);
                     resolve();
                 };
             });
