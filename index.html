@@ -207,8 +207,8 @@
 
     <button onclick="exportToPNG()">Exporter en PNG</button>
 
-    <script>
-
+    <script src="https://cdn.jsdelivr.net/npm/canvas-txt@4.0.3">
+const { drawText, getTextHeight, splitText } = window.canvasTxt
 
 
        const textnp = document.getElementById('text1')
@@ -284,6 +284,13 @@
 			    ctx.fillText(texts.value, 114, 544);
 				ctx.fillText(textnd.value, 238, 604);
 				ctx.fillText(textd.value, 300, 670);
+drawText(ctx, (texr.value, {
+  x: 25,
+  y: 900,
+  width: 1016,
+  height: 907,
+  fontSize: 30,
+}))
                     resolve();
                 };
             });
