@@ -209,35 +209,27 @@
     <button onclick="exportToPNG()">Exporter en PNG</button>
 
     <script>
-function fillText(ctx, text, x, y, maxWidth, spacing = 0){
-  const lines = text.split('\n')
-  let lineHeight = 0
-  for (const line of lines) {
-    if (!line) {
-      y += lineHeight
-      continue
-    }
-    let s = ''
-    for (const char of line) {
-      const { width, height } = measureText(ctx, s + char)
-      if (width <= maxWidth) {
-        s += char
-      } else {
-        ctx.fillText(s, x, y)
-        lineHeight = height + spacing
-        y += lineHeight + spacing
-        s = char
-      }
-    }
-    if (s) {
-      const { height } = measureText(ctx, s)
-      ctx.fillText(s, x, y)
-      lineHeight = height + spacing
-      y += lineHeight
-    }
-  }
-}
+function wrapText(context, text, x, y, maxWidth, lineHeight) {
+        var words = text.split(' ');
+        var line = '';
 
+        for(var n = 0; n < words.length; n++) {
+          var testLine = line + words[n] + ' ';
+          var metrics = context.measureText(testLine);
+          var testWidth = metrics.width;
+          if (testWidth > maxWidth && n > 0) {
+            context.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+          }
+          else {
+            line = testLine;
+          }
+        }
+        context.fillText(line, x, y);
+      }
+      
+    
 
        const textnp = document.getElementById('text1')
         var texta = document.getElementById('text2')
@@ -312,7 +304,7 @@ function fillText(ctx, text, x, y, maxWidth, spacing = 0){
 			    ctx.fillText(texts.value, 114, 544);
 				ctx.fillText(textnd.value, 238, 604);
 				ctx.fillText(textd.value, 300, 670);
-                               ctx.fillText(textr.value, 25, 900, 1016);
+                              wrapText(ctx, textr.value, 25, 900, 1016, 25);
                     resolve();
                 };
             });
