@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création d'image personnalisée</title>
+    <style>
+        #canvas-container {
+            margin-bottom: 20px;
+        }
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <canvas id="myCanvas" width="600" height="600"></canvas>
+    </div>
+    <form id="myForm">
+        <div>
+            <label for="field1">Nom Prénom:</label>
+            <input type="text" id="field1" required>
+        </div>
+        <div>
+            <label for="field2">Date de naissance:</label>
+            <input type="text" id="field2" required>
+        </div>
+        <div>
+            <label for="field3">Sexe:</label>
+            <input type="text" id="field3" required>
+        </div>
+        <div>
+            <label for="field4">Date de création:<label>
+            <input type="text" id="field4" required>
+        </div>
+		 <div>
+            <label for="field5">Date d'invalidité:</label>
+            <input type="text" id="field5" required>
+        </div>
+        <div>
+            <label for="checkbox1">équipement de mobilité:</label>
+            <input type="checkbox" id="checkbox1" value="équipement de mobilité pour de la réeducation ou le maintient.">
+        </div>
+        <div>
+            <label for="checkbox2">Anti-douleur:</label>
+            <input type="checkbox" id="checkbox2" value="MÉTHADONE CHLORHYDRATE AP-HP 40 mg/15 ml">
+        </div>
+        <div>
+            <label for="checkbox3">Anti-coagulant:</label>
+            <input type="checkbox" id="checkbox3" value="ELIQUIS 2,5 mg : comprimé (rouge clair) ; boîte de 20">
+        </div>
+        <div>
+            <label for="checkbox4">Kit bandage:</label>
+            <input type="checkbox" id="checkbox4" value="Trousse contenant 3 jours de bandage et le maeériel a utiiser">
+        </div>
+        <div>
+            <label for="checkbox5">Antidépresseurs:</label>
+            <input type="checkbox" id="checkbox5" value="XANAX 0,50 mg : comprimé sécable (rose) ; boîte de 30">
+        </div>
+        <div>
+            <label for="checkbox6">Option 6:</label>
+            <input type="checkbox" id="checkbox6" value="Option 6">
+        </div>
+        <div>
+            <label for="checkbox7">Option 7:</label>
+            <input type="checkbox" id="checkbox7" value="Option 7">
+        </div>
+		<div>
+    <label required>Choix:</label>
+    <input type="radio" id="choice1" name="choices" value="Leila Cortez">
+    <label for="choice1">Dr Cortez</label>
+    <input type="radio" id="choice2" name="choices" value="Alek Hoffa">
+    <label for="choice2">Dr Hoffa</label>
+</div>
+        <button type="button" onclick="drawOnCanvas()">Prévisualiser</button>
+        <button type="submit">Télécharger</button>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
